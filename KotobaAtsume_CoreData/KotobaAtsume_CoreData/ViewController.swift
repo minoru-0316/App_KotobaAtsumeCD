@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
         //---------------------------------------------------------------------------
         //[メモ 12 <2>dataSourceメソッドが存在するクラスの設定]
         tableView.dataSource = self
+        
+        //セルを選択するのに必要
+        tableView.delegate = self
         
     }
     
@@ -213,6 +216,68 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
         //設定済みのCellオブジェクトを画面に反映
         return cell
     }
+    
+    //---------------------------------------------------------------------------
+    //[メモ 13 <3>bookCellが選択された時に呼び出されるdelegateメソッド]
+    //bookCellが選択された時に呼び出されるdelegateメソッド
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("セルがタップされました")
+        
+        //本の情報を定義する
+        let titleText = searchBookList[indexPath.row].title
+        let authorsText:[String] = searchBookList[indexPath.row].authors as! [String]
+        let publisherText:String? = searchBookList[indexPath.row].publisher
+        let industryIdentifiersText = searchBookList[indexPath.row].industryIdentifiers
+        let imageLinksURL = searchBookList[indexPath.row].imageLinks
+        let previewLinkURL = searchBookList[indexPath.row].previewLink
+        
+        //セルの選択を解除
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        //次の画面へ値を渡す
+        //構造体を作成
+        let item :VolumeInfoJson = VolumeInfoJson(
+            title: titleText,
+            authors: (authorsText as! [String]),
+            publisher: publisherText,
+            imageLinks: imageLinksURL,
+            industryIdentifiers: industryIdentifiersText,
+            previewLink: previewLinkURL
+        )
+        
+        print(item)
+        print(titleText as Any,authorsText as Any,publisherText as Any,industryIdentifiersText as Any,imageLinksURL as Any,previewLinkURL as Any)
+        print("--------------")
+        
+        //別の画面に遷移
+        self.performSegue(withIdentifier: "BookDetail", sender: item)
+        
+    }
+    
+    
+    //---------------------------------------------------------------------------
+    //[メモ 14:画面遷移イベントをフックし、値を渡す。]
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if let bookDetail = segue.destination as? BookDetail {
+                
+                if let paramater: VolumeInfoJson = sender as? VolumeInfoJson {
+                    // 複数のパラメータがある場合は、一つずつ渡してあげる
+                    bookDetail.titleText = paramater.title
+                    bookDetail.publisherText = paramater.publisher
+                    bookDetail.authorsText = paramater.authors
+                    
+    //                                bookDetail.imageLink = paramater.imageLinks
+                    //                bookDetail.industryIdentifiersText = paramater.industryIdentifiers
+                    //                bookDetail.previewLinkURL = paramater.previewLinkURL
+                    
+                    print(paramater.imageLinks?.smallThumbnail as Any)
+                    print(type(of: paramater.imageLinks))
+                    print(type(of: paramater.authors))
+                    
+                }
+            }
+        }
+
     
 }
 

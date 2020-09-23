@@ -14,6 +14,8 @@
 		1007EB97251B0F760042802E /* KotobaAtsume_CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1007EB95251B0F760042802E /* KotobaAtsume_CoreData.xcdatamodeld */; };
 		1007EB99251B0F790042802E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1007EB98251B0F790042802E /* Assets.xcassets */; };
 		1007EB9C251B0F790042802E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1007EB9A251B0F790042802E /* LaunchScreen.storyboard */; };
+		1007EBA4251B67AE0042802E /* BookDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007EBA3251B67AE0042802E /* BookDetail.swift */; };
+		1007EBA6251B67DC0042802E /* BookDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1007EBA5251B67DC0042802E /* BookDetail.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		1007EB98251B0F790042802E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1007EB9B251B0F790042802E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1007EB9D251B0F790042802E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1007EBA3251B67AE0042802E /* BookDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetail.swift; sourceTree = "<group>"; };
+		1007EBA5251B67DC0042802E /* BookDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookDetail.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,8 @@
 				1007EB9A251B0F790042802E /* LaunchScreen.storyboard */,
 				1007EB9D251B0F790042802E /* Info.plist */,
 				1007EB95251B0F760042802E /* KotobaAtsume_CoreData.xcdatamodeld */,
+				1007EBA3251B67AE0042802E /* BookDetail.swift */,
+				1007EBA5251B67DC0042802E /* BookDetail.storyboard */,
 			);
 			path = KotobaAtsume_CoreData;
 			sourceTree = "<group>";
@@ -130,6 +136,7 @@
 			files = (
 				1007EB9C251B0F790042802E /* LaunchScreen.storyboard in Resources */,
 				1007EB99251B0F790042802E /* Assets.xcassets in Resources */,
+				1007EBA6251B67DC0042802E /* BookDetail.storyboard in Resources */,
 				1007EB94251B0F760042802E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,6 +152,7 @@
 				1007EB8D251B0F760042802E /* AppDelegate.swift in Sources */,
 				1007EB8F251B0F760042802E /* SceneDelegate.swift in Sources */,
 				1007EB97251B0F760042802E /* KotobaAtsume_CoreData.xcdatamodeld in Sources */,
+				1007EBA4251B67AE0042802E /* BookDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
