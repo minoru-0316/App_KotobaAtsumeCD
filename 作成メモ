@@ -1,0 +1,119 @@
+9月9日
+　【カメラでバーコードを検索できるようにする】
+    
+
+　【本の詳細ページ】
+　　label : タイトル、著者、画像、出版社を表示
+    ImageView :　画像
+    button : 本棚　、　気になる! （どちらも本の情報を保存する）
+
+    【本棚　一覧】
+    　　ImageView :　画像
+
+【やることリスト】
+＜メインの機能＞
+・✅本の検索機能を実装
+・本の検索結果一覧をクリックすると、詳細画面が開く。
+・詳細画面では、
+    label : タイトル、著者、画像、出版社を表示
+    ImageView :　画像
+    button : 「本棚」へ登録する　、「興味あるリスト」へ登録する （どちらも本の情報をCoreDataへ保存する）
+
+＜補助的な機能＞
+・起動画面（初回のみ）
+・登録した本のソート機能（タイトル・著者名・登録順・評価順）
+・読書データ（読んだ本の数・グラフ）
+・
+
+Tips
+・配列の文字列を、Stringに入れる方法
+　エラー：Cannot assign value of type '[String]?' to type 'String?'　
+　  ×　self.authors.text = self.authorsText
+    ○　self.authors.text = self.authorsText!.joined(separator: "、")
+  参考URL：https://www.it-swarm-ja.tech/ja/ios/swift%E9%85%8D%E5%88%97%E3%82%92%E6%96%87%E5%AD%97%E5%88%97%E3%81%AB%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/1047909333/
+
+
+【作業手順】
+1:navigation controller　を使用する
+
+2:searchBar , tableView , tableViewCell　を配置してから、
+　オートレイアウトを設定
+
+3:tableViewCell　の　
+    identifer を　bookCellに、
+    styleを basic　に変更
+
+4:searchBar , tableView　の紐付け
+    @IBOutlet weak var searchText: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+
+5:searchBar : delegate , プレースホルダーを設定
+
+    viewController クラスに、　UISearchBarDelegate 　を追加。
+
+    //Search Barのdelegate通知先を設定
+        searchText.delegate = self
+    //入力のヒントとなる、プレースホルダーを設定
+        searchText.placeholder = "検索キーワードを入力。表示件数20件まで"
+        
+6:searchBarのサーチボタンクリック時のメソッドを追加
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) { ・・・
+
+7:キーワードから本を検索して、一覧を表示する searchBookメソッド
+ <1>本の検索キーワードをURLエンコードして、リクエストURLを組み立てる
+    guard let文を使うことで、戻り値がnilになっても変数を安全に参照することができる。
+    func searchBook(keyword : String) { ・・・
+ <2>本を検索する
+    6:の、サーチボタンクリック時のメソッドで、7:のsearchBookメソッド　を実行する
+
+8:リクエストを生成して、JSONを取得する
+  取得したレスポンスデータ JSONを記憶する構造体を宣言
+    googleBooksAPIのJSONの構造は、
+        volumeInfo　の中に基本的な書籍情報が入っているのでここから情報を取得する。
+        ただし、この中で階層が分かれている項目（例： "imageLinks": {"smallThumbnail": "","thumbnail": ""})があるので
+        この場合は、その「子要素を入れる、構造体」を定義してから、「親要素に割り当ててやる」
+        子要素を取得したい場合は、以下のようにして指定すれば取得できる
+            print(paramater.imageLinks?.smallThumbnail as Any)
+    参考URL : https://teratail.com/questions/214378
+ 
+9:リクエストを生成して、JSONを取得
+    <1>リクエストに必要な情報を生成
+        リクエストURLの情報を格納する変数を作成する
+    <2>データ転送を管理するためのセッションを生成
+    　　URLSessionを生成する
+    <3>リクエストをタスクとして登録
+        .dataタスクメソッドを使用して、リクエスト処理をタスクとして登録する。
+        ダウンロードが完了すると、クロージャー（complehensionHandler）が実行される
+    <4>セッションを終了
+        session.finishTasksAndInvalidate()
+    <5>JSONDecoderのインスタンス取得
+        JSONをデコードするためのオブジェクトを作成
+    <6>受け取ったJSONデータをパース（解析）して格納
+        decoder.decodeで取得したJSONデータ(data!)をパースして、構造体ResultJsonのデータ構造に合わせて
+        変数jsonに格納。
+
+10:ATSの設定を変更
+    httpでもアクセスできるようにする。
+
+11:取得した本のJSONデータをTableViewで一覧に表示してみる
+    <1>本のデータを格納するタプルを作成し、さらにそれを配列にする
+        データを格納するタプルを 配列 として宣言することで、扱いやすく（要素の追加や削除）する。
+    <2>本のデータをタプル配列に詰め込む
+
+12:本のデータをTableViewに連結
+    <1>クラスの宣言:tableViewCellのdataSourceを利用
+        UITableViewDataSource　を　class viewController:　に追加
+    <2>dataSourceメソッドが存在するクラスの設定
+        同じファイル内にメソッドを追加するので、selfを使用
+    <3>dataSourceメソッドの追加 : 【必須】Cellの総数 を返すメソッド
+    <4>dataSourceメソッドの追加 : 【必須】Cellに値 を設定するメソッド
+        ここで、表示する内容（今回は、タイトル・画像）を設定する
+    <5>searchBookList　の　初期化と、TableViewの更新
+        self.searchBookList.removeAll()
+        self.tableView.reloadData()
+
+13:選択した本の情報を別画面に表示する
+    <1>遷移先画面の作成　と　segueの設定
+
+//---------------------------------------------------------------------------
+//[メモ ]
