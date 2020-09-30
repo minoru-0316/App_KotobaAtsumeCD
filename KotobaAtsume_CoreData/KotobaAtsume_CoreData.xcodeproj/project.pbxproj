@@ -16,6 +16,8 @@
 		1007EB9C251B0F790042802E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1007EB9A251B0F790042802E /* LaunchScreen.storyboard */; };
 		1007EBA4251B67AE0042802E /* BookDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007EBA3251B67AE0042802E /* BookDetail.swift */; };
 		1007EBA6251B67DC0042802E /* BookDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1007EBA5251B67DC0042802E /* BookDetail.storyboard */; };
+		10A0D46525246C6100FF2D94 /* BookShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A0D46425246C6100FF2D94 /* BookShelfViewController.swift */; };
+		10A0D46725246C8C00FF2D94 /* BookShelf.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10A0D46625246C8C00FF2D94 /* BookShelf.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		1007EB9D251B0F790042802E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1007EBA3251B67AE0042802E /* BookDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetail.swift; sourceTree = "<group>"; };
 		1007EBA5251B67DC0042802E /* BookDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookDetail.storyboard; sourceTree = "<group>"; };
+		10A0D46425246C6100FF2D94 /* BookShelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookShelfViewController.swift; sourceTree = "<group>"; };
+		10A0D46625246C8C00FF2D94 /* BookShelf.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookShelf.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,8 @@
 				1007EB95251B0F760042802E /* KotobaAtsume_CoreData.xcdatamodeld */,
 				1007EBA3251B67AE0042802E /* BookDetail.swift */,
 				1007EBA5251B67DC0042802E /* BookDetail.storyboard */,
+				10A0D46425246C6100FF2D94 /* BookShelfViewController.swift */,
+				10A0D46625246C8C00FF2D94 /* BookShelf.storyboard */,
 			);
 			path = KotobaAtsume_CoreData;
 			sourceTree = "<group>";
@@ -135,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1007EB9C251B0F790042802E /* LaunchScreen.storyboard in Resources */,
+				10A0D46725246C8C00FF2D94 /* BookShelf.storyboard in Resources */,
 				1007EB99251B0F790042802E /* Assets.xcassets in Resources */,
 				1007EBA6251B67DC0042802E /* BookDetail.storyboard in Resources */,
 				1007EB94251B0F760042802E /* Main.storyboard in Resources */,
@@ -152,6 +159,7 @@
 				1007EB8D251B0F760042802E /* AppDelegate.swift in Sources */,
 				1007EB8F251B0F760042802E /* SceneDelegate.swift in Sources */,
 				1007EB97251B0F760042802E /* KotobaAtsume_CoreData.xcdatamodeld in Sources */,
+				10A0D46525246C6100FF2D94 /* BookShelfViewController.swift in Sources */,
 				1007EBA4251B67AE0042802E /* BookDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +307,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 86D7Q77RVX;
 				INFOPLIST_FILE = KotobaAtsume_CoreData/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -317,6 +326,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 86D7Q77RVX;
 				INFOPLIST_FILE = KotobaAtsume_CoreData/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -257,27 +257,27 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
     
     //---------------------------------------------------------------------------
     //[メモ 14:画面遷移イベントをフックし、値を渡す。]
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if let bookDetail = segue.destination as? BookDetail {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let bookDetail = segue.destination as? BookDetail {
+            
+            if let paramater: VolumeInfoJson = sender as? VolumeInfoJson {
+                // 複数のパラメータがある場合は、一つずつ渡してあげる
+                bookDetail.titleText = paramater.title
+                bookDetail.publisherText = paramater.publisher
+                bookDetail.authorsText = paramater.authors
                 
-                if let paramater: VolumeInfoJson = sender as? VolumeInfoJson {
-                    // 複数のパラメータがある場合は、一つずつ渡してあげる
-                    bookDetail.titleText = paramater.title
-                    bookDetail.publisherText = paramater.publisher
-                    bookDetail.authorsText = paramater.authors
-                    
-    //                                bookDetail.imageLink = paramater.imageLinks
-                    //                bookDetail.industryIdentifiersText = paramater.industryIdentifiers
-                    //                bookDetail.previewLinkURL = paramater.previewLinkURL
-                    
-                    print(paramater.imageLinks?.smallThumbnail as Any)
-                    print(type(of: paramater.imageLinks))
-                    print(type(of: paramater.authors))
-                    
-                }
+                //                                bookDetail.imageLink = paramater.imageLinks
+                //                bookDetail.industryIdentifiersText = paramater.industryIdentifiers
+                //                bookDetail.previewLinkURL = paramater.previewLinkURL
+                
+                print(paramater.imageLinks?.smallThumbnail as Any)
+                print(type(of: paramater.imageLinks))
+                print(type(of: paramater.authors))
+                
             }
         }
-
+    }
+    
     
 }
 
